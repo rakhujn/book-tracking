@@ -40,6 +40,7 @@ export const NewBookModal = (): JSX.Element => {
                 if (modalRef) modalRef.hide()
 
                 setFormSubmit(false)
+                location.reload()
             })
             .catch((e) => console.error(e.message))
     }

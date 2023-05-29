@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react"
 import { Book } from "../types/Book"
-import { doc, updateDoc } from "firebase/firestore"
+import { deleteDoc, doc, updateDoc } from "firebase/firestore"
 import { db } from "../service/firebase"
 import { AuthContext, AuthContextValueType } from "../context/AuthContext"
 
@@ -17,11 +17,23 @@ export const BookItemRow = ({ book }: BookItemRowProps): JSX.Element => {
             .catch((e) => console.log(e.message))
     }, [authUser, localBook])
 
+    const deleteABook = () => {
+        if (!authUser || !localBook.id) return
+        const docRef = doc(db, "books", authUser.uid, "library", localBook.id)
+        deleteDoc(docRef)
+            .then(() => { console.log("deleted") 
+        location.reload()
+        })
+            .catch((e) => { console.error(e.message) })
+    }
     return <>
         <div className="card m-1 mx-2">
             <div className="card-body">
                 <h5 className="card-title">{localBook.title.toUpperCase()}</h5>
                 <p className="card-text text-muted">Written by: {localBook.author}</p>
+                <div>
+                    <button onClick={deleteABook}>DELETE</button>
+                </div>
 
                 {/* Status */}
                 <div className="btn-group" role="group">
