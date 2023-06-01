@@ -39,6 +39,10 @@ export const BookList = (): JSX.Element => {
             >New Book
             </a>
         </div>
-        {bookList.map((book, index) => <BookItemRow key={index} book={book} />)}
+        <div className="container-fluid">
+            <div className="row">
+                {bookList.map((book, index) => <BookItemRow key={index} book={book} />)}
+            </div>
+        </div>
     </>
 }
