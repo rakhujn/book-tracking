@@ -13,7 +13,7 @@ export const dropdownList = [...dropdownElementList].map(dropdownToggleEl => new
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <Rating total={10} rating={5} />
+    <Rating total={10} rating={5.5} />
     {/* <App /> */}
   </React.StrictMode>
 )
